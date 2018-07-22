@@ -8,13 +8,25 @@ clearHandler = () => {
 };
 backHandler = () => {
   const display = document.getElementsByClassName("display");
-  display[0].innerText = display[0].innerText.slice(0,-1);
   displayVal = display[0].innerText;
-
+  valueArrayPopped = valueArray.pop();
+  if(Number(valueArrayPopped)===Number(displayVal)){
+    displayVal = displayVal.slice(0,-1);
+    valueArray.push(displayVal);
+    display[0].innerText =displayVal;
+  }
+  else {
+    valueArray.push(valueArrayPopped);
+    displayVal = displayVal.slice(0,-1);
+  }
+  display[0].innerText = displayVal;
 };
 numHandler = event => {
   const num = event.target.innerText;
   const display = document.getElementsByClassName("display");
+  if(valueArray){
+
+  }
   displayVal += num;
   display[0].innerText = displayVal;
 };
@@ -75,11 +87,14 @@ equalHandler = event => {
       firstVal = firstVal + Number(valueArray[index + 1]);
       equals = firstVal;
     } else if (valueArray[index] == "/") {
-      console.log("here");
       firstVal = firstVal / Number(valueArray[index + 1]);
       equals = firstVal;
     }
   }
+  console.log(equals);
+  equals = Number(equals);
+  if(equals % 1 != 0)
+    {equals = equals.toFixed(2)};
   display[0].innerText = equals;
   displayVal = "";
   valueArray= [];

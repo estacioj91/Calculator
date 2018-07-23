@@ -23,10 +23,9 @@ backHandler = () => {
   display[0].innerText = displayVal;
 };
 numHandler = event => {
-  if(equalsPressed==true && signPress != true){
+  if (equalsPressed == true && signPress != true) {
     valueArray = [];
     equalsPressed = false;
-
   }
   const num = event.target.innerText;
   const display = document.getElementsByClassName("display");
@@ -34,7 +33,6 @@ numHandler = event => {
   }
   displayVal += num;
   display[0].innerText = displayVal;
-
 };
 divHandler = event => {
   const display = document.getElementsByClassName("display");
@@ -82,7 +80,6 @@ sumHandler = event => {
   const display = document.getElementsByClassName("display");
   if (displayVal != "") {
     valueArray.push(displayVal);
-
   }
   if (valueArray[valueArray.length - 1] != "+") {
     valueArray.push("+");
@@ -96,7 +93,7 @@ sumHandler = event => {
 equalHandler = event => {
   let firstVal = Number(valueArray[0]);
   let equals = 0;
-  if(equalsPressed==true){
+  if (equalsPressed == true) {
     return;
   }
   const display = document.getElementsByClassName("display");
@@ -128,4 +125,16 @@ equalHandler = event => {
   valueArray.push(equals);
 
   equalsPressed = true;
+};
+zeroHandler = event => {
+  if (equalsPressed == true && signPress != true) {
+    valueArray = [];
+    equalsPressed = false;
+  }
+  const num = event.target.innerText;
+  const display = document.getElementsByClassName("display");
+  if (valueArray) {
+  }
+  displayVal += num;
+  display[0].innerText = displayVal;
 };

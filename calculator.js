@@ -10,29 +10,27 @@ backHandler = () => {
   const display = document.getElementsByClassName("display");
   displayVal = display[0].innerText;
   valueArrayPopped = valueArray.pop();
-  if(Number(valueArrayPopped)===Number(displayVal)){
-    displayVal = displayVal.slice(0,-1);
+  if (Number(valueArrayPopped) === Number(displayVal)) {
+    displayVal = displayVal.slice(0, -1);
     valueArray.push(displayVal);
-    display[0].innerText =displayVal;
-  }
-  else {
+    display[0].innerText = displayVal;
+  } else {
     valueArray.push(valueArrayPopped);
-    displayVal = displayVal.slice(0,-1);
+    displayVal = displayVal.slice(0, -1);
   }
   display[0].innerText = displayVal;
 };
 numHandler = event => {
   const num = event.target.innerText;
   const display = document.getElementsByClassName("display");
-  if(valueArray){
-
+  if (valueArray) {
   }
   displayVal += num;
   display[0].innerText = displayVal;
 };
 divHandler = event => {
   const display = document.getElementsByClassName("display");
-  if(displayVal != ""){
+  if (displayVal != "") {
     valueArray.push(displayVal);
   }
   valueArray.push("/");
@@ -42,7 +40,7 @@ divHandler = event => {
 };
 multHandler = event => {
   const display = document.getElementsByClassName("display");
-  if(displayVal != ""){
+  if (displayVal != "") {
     valueArray.push(displayVal);
   }
   display[0].innerText = "";
@@ -52,7 +50,7 @@ multHandler = event => {
 };
 subHandler = event => {
   const display = document.getElementsByClassName("display");
-  if(displayVal != ""){
+  if (displayVal != "") {
     valueArray.push(displayVal);
   }
   valueArray.push("-");
@@ -62,7 +60,7 @@ subHandler = event => {
 };
 sumHandler = event => {
   const display = document.getElementsByClassName("display");
-  if(displayVal != ""){
+  if (displayVal != "") {
     valueArray.push(displayVal);
   }
   valueArray.push("+");
@@ -93,11 +91,12 @@ equalHandler = event => {
   }
   console.log(equals);
   equals = Number(equals);
-  if(equals % 1 != 0)
-    {equals = equals.toFixed(2)};
+  if (equals % 1 != 0) {
+    equals = equals.toFixed(2);
+  }
   display[0].innerText = equals;
   displayVal = "";
-  valueArray= [];
-  valueArray.push(equals)
+  valueArray = [];
+  valueArray.push(equals);
   console.log(valueArray);
 };

@@ -1,5 +1,7 @@
 let displayVal = "";
 let valueArray = [];
+let equalsPressed = false;
+let signPress = false;
 clearHandler = () => {
   const display = document.getElementsByClassName("display");
   display[0].innerText = "0";
@@ -21,22 +23,32 @@ backHandler = () => {
   display[0].innerText = displayVal;
 };
 numHandler = event => {
+  if(equalsPressed==true && signPress != true){
+    valueArray = [];
+    equalsPressed = false;
+
+  }
   const num = event.target.innerText;
   const display = document.getElementsByClassName("display");
   if (valueArray) {
   }
   displayVal += num;
   display[0].innerText = displayVal;
+
 };
 divHandler = event => {
   const display = document.getElementsByClassName("display");
   if (displayVal != "") {
     valueArray.push(displayVal);
   }
-  valueArray.push("/");
+  if (valueArray[valueArray.length - 1] != "/") {
+    valueArray.push("/");
+  }
+
   display[0].innerText = "";
   displayVal = "";
-  console.log(valueArray);
+  signPress = true;
+  equalsPressed = false;
 };
 multHandler = event => {
   const display = document.getElementsByClassName("display");
@@ -44,36 +56,52 @@ multHandler = event => {
     valueArray.push(displayVal);
   }
   display[0].innerText = "";
-  valueArray.push("*");
+  if (valueArray[valueArray.length - 1] != "*") {
+    valueArray.push("*");
+  }
   displayVal = "";
-  console.log(valueArray);
+
+  signPress = true;
+  equalsPressed = false;
 };
 subHandler = event => {
   const display = document.getElementsByClassName("display");
   if (displayVal != "") {
     valueArray.push(displayVal);
   }
-  valueArray.push("-");
+  if (valueArray[valueArray.length - 1] != "-") {
+    valueArray.push("-");
+  }
   display[0].innerText = "";
   displayVal = "";
-  console.log(valueArray);
+
+  signPress = true;
+  equalsPressed = false;
 };
 sumHandler = event => {
   const display = document.getElementsByClassName("display");
   if (displayVal != "") {
     valueArray.push(displayVal);
+
   }
-  valueArray.push("+");
+  if (valueArray[valueArray.length - 1] != "+") {
+    valueArray.push("+");
+  }
   display[0].innerText = "";
   displayVal = "";
-  console.log(valueArray);
+
+  signPress = true;
+  equalsPressed = false;
 };
 equalHandler = event => {
   let firstVal = Number(valueArray[0]);
   let equals = 0;
+  if(equalsPressed==true){
+    return;
+  }
   const display = document.getElementsByClassName("display");
   valueArray.push(displayVal);
-  console.log(valueArray.length);
+
   for (index = 0; index < valueArray.length; index++) {
     if (valueArray[index] == "*") {
       firstVal = firstVal * Number(valueArray[index + 1]);
@@ -89,7 +117,7 @@ equalHandler = event => {
       equals = firstVal;
     }
   }
-  console.log(equals);
+
   equals = Number(equals);
   if (equals % 1 != 0) {
     equals = equals.toFixed(2);
@@ -98,5 +126,6 @@ equalHandler = event => {
   displayVal = "";
   valueArray = [];
   valueArray.push(equals);
-  console.log(valueArray);
+
+  equalsPressed = true;
 };
